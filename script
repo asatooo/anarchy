@@ -1,1 +1,4 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/asatooo/w/refs/heads/main/file"))()
+local http = game:HttpGet("https://raw.githubusercontent.com/asatooo/w/refs/heads/main/file")
+if http and #http > 0 then
+    loadstring(http)()
+end
